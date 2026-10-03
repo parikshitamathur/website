@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ivory:#fff8f3; --blush:#fde6ec; --petal:#f7cddb;
+    --ivory:#fdeceb; --blush:#f6c8d8; --petal:#e9a9c0;
     --wine:#5a1f3d; --wine-soft:#7a3a58;
-    --rose:#c9788f; --gold:#b98a4b; --champagne:#e9cf9f;
+    --rose:#b4587a; --gold:#b98a4b; --champagne:#e9cf9f;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{min-height:100%}
@@ -40,18 +40,27 @@
   h1{
     font-family:'Great Vibes',cursive;font-weight:400;
     font-size:clamp(3.4rem,13vw,6.4rem);line-height:1.08;margin:10px 0 6px;
-    background:linear-gradient(90deg,#a85a73,#d99a8a,#b98a4b,#d99a8a,#a85a73);
+    background:linear-gradient(90deg,#9a4466,#cc7f91,#b98a4b,#cc7f91,#9a4466);
+    background-size:200% auto;animation:shine 7s linear infinite;
+    text-shadow:0 0 1px rgba(255,255,255,.2);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .sub{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:var(--wine-soft)}
+  @keyframes shine{to{background-position:200% center}}
+  .orn{animation:twinkle 2.6s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
 
-  .countdown{display:flex;justify-content:center;gap:12px;margin:34px 0 8px;flex-wrap:wrap}
+  .countdown{display:flex;justify-content:center;gap:8px;margin:14px 0 8px;flex-wrap:wrap}
+  .tbox{margin:26px 0;padding:22px 12px 18px;border-radius:26px;background:rgba(255,255,255,.55);border:1px solid rgba(185,138,75,.45);box-shadow:0 14px 34px rgba(180,88,122,.15)}
+  .tl{font-family:'Playfair Display',serif;letter-spacing:.06em;color:var(--wine);font-size:1.02rem}
+  .tnote{font-size:.9rem;color:var(--wine-soft);margin-top:4px}
+  .story{font-family:'Playfair Display',serif;font-style:italic;max-width:480px;margin:12px auto 0;line-height:1.75;color:var(--wine-soft);min-height:4.5em;font-size:1rem}
   .cd{
-    width:78px;padding:14px 0 10px;border-radius:18px;
+    width:66px;padding:12px 0 8px;border-radius:16px;
     background:rgba(255,255,255,.7);border:1px solid rgba(185,138,75,.5);
     box-shadow:0 8px 24px rgba(201,120,143,.18);
   }
-  .cd b{display:block;font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--wine)}
+  .cd b{display:block;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--wine)}
   .cd span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
   #cdText{font-size:.95rem;color:var(--wine-soft);margin-bottom:6px}
 
@@ -146,18 +155,32 @@
 <button id="musicBtn">&#9835; Music: On</button>
 
 <main>
-  <div class="tag">A little something for you</div>
-  <div class="orn">&#10022; &#10022; &#10022;</div>
+  <div class="tag">Wrapped in love, just for you</div>
+  <div class="orn">&#10022; &#127872; &#10022;</div>
   <h1>Happy Birthday,<br>Parikshita</h1>
-  <p class="sub">6th October</p>
+  <p class="sub">6th October &middot; a day made just for you &#128150;</p>
 
-  <div class="countdown" id="countdown">
-    <div class="cd"><b id="d">0</b><span>Days</span></div>
-    <div class="cd"><b id="h">0</b><span>Hours</span></div>
-    <div class="cd"><b id="m">0</b><span>Mins</span></div>
-    <div class="cd"><b id="s">0</b><span>Secs</span></div>
+  <div class="tbox">
+    <div class="tl">&#127881; Your birthday begins at 12:00 AM</div>
+    <div class="countdown" id="cd1">
+      <div class="cd"><b id="ad">0</b><span>Days</span></div>
+      <div class="cd"><b id="ah">0</b><span>Hours</span></div>
+      <div class="cd"><b id="am">0</b><span>Mins</span></div>
+      <div class="cd"><b id="as">0</b><span>Secs</span></div>
+    </div>
+    <p class="tnote" id="n1">until your special day</p>
   </div>
-  <p id="cdText">until your special day</p>
+
+  <div class="tbox">
+    <div class="tl">&#128118; A little angel arrives at 3:33 AM</div>
+    <div class="countdown" id="cd2">
+      <div class="cd"><b id="bd">0</b><span>Days</span></div>
+      <div class="cd"><b id="bh">0</b><span>Hours</span></div>
+      <div class="cd"><b id="bm">0</b><span>Mins</span></div>
+      <div class="cd"><b id="bs">0</b><span>Secs</span></div>
+    </div>
+    <p class="story" id="story"></p>
+  </div>
 
   <div class="giftWrap" id="giftWrap">
     <button class="gift" id="gift" aria-label="Open your gift">
@@ -182,10 +205,10 @@
   </div>
 
   <section id="card">
-    <h2>Dear Parikshita,</h2>
-    <div class="age">36 YEARS OF BEING WONDERFUL</div>
+    <h2>My dearest Parikshita,</h2>
+    <div class="age">SWEET, RADIANT &amp; ONE OF A KIND</div>
     <div class="poem">
-      <p>Thirty-six years of a light so true,<br>The world grew softer when it met you.<br>Your kindness enters before you speak<br>And leaves a warmth in the hearts you seek.</p>
+      <p>A little sparkle, a heart so true,<br>The world grew softer when it met you.<br>Your kindness enters before you speak<br>And leaves a warmth in the hearts you seek.</p>
       <p>You carry no mask and you keep no score,<br>You simply give, then give some more.<br>A gentle soul with a courage rare,<br>Who makes the heaviest day feel fair.</p>
       <p>So here's to your laughter, here's to your grace,<br>To the quiet strength in your smiling face.<br>If goodness ever needed a name,<br>It would answer to yours, and be glad it came.</p>
       <p>May this new year bring you all you're due,<br>Every joy that's been waiting for you.<br>Best of hearts and best of souls,<br>You make the world feel whole.</p>
@@ -208,7 +231,7 @@
   </div>
 
   <div class="sec">
-    <h3>Wishes for your 36th year</h3><div class="line"></div>
+    <h3>Wishes for your year ahead</h3><div class="line"></div>
     <ul class="wishes">
       <li data-n="1">May the kindness you give come back to you, multiplied.</li>
       <li data-n="2">May every dream you have quietly held find its way to you.</li>
@@ -220,7 +243,7 @@
   </div>
 
   <div class="sec">
-    <div class="big">Thirty-six, and shining brighter than ever.</div>
+    <div class="big">Sweet as ever, and shining brighter every day.</div>
     <div class="hearts">&#9825; &#9829; &#9825;</div>
   </div>
 </div>
@@ -261,22 +284,48 @@
   })();
 })();
 
-/* ---------- countdown to 6 October ---------- */
-const target=new Date(2026,9,6,0,0,0);
-const endOfDay=new Date(2026,9,7,0,0,0);
-const d_=document.getElementById('d'),h_=document.getElementById('h'),m_=document.getElementById('m'),s_=document.getElementById('s');
+/* ---------- two timers: midnight and 3:33 AM (India time) ---------- */
+/* To preview, open the site with e.g.  ?now=2026-10-05T23:55:00  at the end of the address */
+const fake=new URLSearchParams(location.search).get('now');
+const offset=fake?(new Date(fake)-new Date()):0;
+const nowD=()=>new Date(Date.now()+offset);
+const T1=new Date('2026-10-06T00:00:00+05:30');
+const T2=new Date('2026-10-06T03:33:00+05:30');
+const END=new Date('2026-10-07T00:00:00+05:30');
+const $=id=>document.getElementById(id);
+function fill(p,sec){
+  const d=Math.floor(sec/86400);sec%=86400;
+  const h=Math.floor(sec/3600);sec%=3600;
+  const m=Math.floor(sec/60),s=sec%60;
+  $(p+'d').textContent=d;
+  $(p+'h').textContent=String(h).padStart(2,'0');
+  $(p+'m').textContent=String(m).padStart(2,'0');
+  $(p+'s').textContent=String(s).padStart(2,'0');
+}
+function storyFor(sec){
+  if(sec>86400) return "Once upon a time, on the morning of the 6th of October, a very special little girl was getting ready to meet the world. The stars are already gathering to watch.";
+  if(sec>10800) return "The night is growing quiet. Somewhere, a family is holding hands, whispering and counting the hours for a tiny hello.";
+  if(sec>3600)  return "The lights are soft and everyone is waiting, smiling, praying and wondering what she will look like.";
+  if(sec>600)   return "Tiny fingers, a tiny heart, and a whole lot of nervous giggles in the waiting room. She is on her way!";
+  if(sec>180)   return "Almost time! Everyone is leaning in, because a very special baby is about to be born.";
+  return "Hold your breath... any second now... a little angel named Parikshita is about to say hello to the world. \u2728";
+}
 function tick(){
-  const now=new Date();
-  if(now>=target){
-    document.getElementById('countdown').style.display='none';
-    document.getElementById('cdText').textContent= now<endOfDay ? "Today is your day!" : "Hope your birthday was beautiful";
-    return;
+  const now=nowD();
+  const s1=Math.floor((T1-now)/1000), s2=Math.floor((T2-now)/1000);
+  if(s1>0){
+    fill('a',s1);$('cd1').style.display='flex';
+    $('n1').textContent= s1<=300 ? "Just a few minutes to go... \u2728" : "until your special day";
+  }else{
+    $('cd1').style.display='none';
+    $('n1').textContent= now<END ? "It's the 6th of October. Your birthday has begun! \uD83C\uDF89" : "Hope your birthday was beautiful \uD83D\uDC96";
   }
-  let diff=Math.floor((target-now)/1000);
-  const d=Math.floor(diff/86400);diff%=86400;
-  const h=Math.floor(diff/3600);diff%=3600;
-  const m=Math.floor(diff/60),s=diff%60;
-  d_.textContent=d;h_.textContent=String(h).padStart(2,'0');m_.textContent=String(m).padStart(2,'0');s_.textContent=String(s).padStart(2,'0');
+  if(s2>0){
+    fill('b',s2);$('cd2').style.display='flex';$('story').textContent=storyFor(s2);
+  }else{
+    $('cd2').style.display='none';
+    $('story').textContent="At 3:33 AM, the world got its sunshine. Parikshita arrived, and everything became a little sweeter. \uD83D\uDC96";
+  }
 }
 tick();setInterval(tick,1000);
 
