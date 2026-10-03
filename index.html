@@ -25,7 +25,7 @@
   .balloons{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
   .balloon{
     position:absolute;bottom:-160px;width:56px;height:70px;border-radius:50% 50% 48% 48%;
-    opacity:.85;animation:rise linear forwards;
+    opacity:.5;animation:rise linear forwards;
   }
   .balloon::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:60px;background:rgba(90,31,61,.25)}
   .balloon::before{content:"";position:absolute;left:14px;top:12px;width:12px;height:18px;border-radius:50%;background:rgba(255,255,255,.55);transform:rotate(25deg)}
@@ -56,7 +56,7 @@
     border:2px dashed rgba(185,138,75,.7);box-shadow:0 16px 36px rgba(180,60,100,.2)}
   .tbox::before{content:"\1F380";position:absolute;top:-17px;left:18px;font-size:1.7rem}
   .tbox::after{content:"\1F388";position:absolute;top:-17px;right:18px;font-size:1.7rem}
-  .tl{font-family:'Great Vibes',cursive;color:var(--wine);font-size:1.9rem;line-height:1.2}
+  .tl{font-family:'Playfair Display',serif;font-style:italic;color:var(--wine-soft);font-size:1.1rem;line-height:1.5;padding:0 8px}
   .tnote{font-size:.9rem;color:var(--wine-soft);margin-top:4px}
   .story{font-family:'Playfair Display',serif;font-style:italic;max-width:480px;margin:12px auto 0;line-height:1.75;color:var(--wine-soft);min-height:4.5em;font-size:1rem}
   .cd{position:relative;width:68px;padding:13px 0 9px;border-radius:50% 50% 46% 46% / 58% 58% 42% 42%;
@@ -249,15 +249,15 @@
 
 <div id="more">
   <div class="sec">
-    <h3>Parikshita's Official Report Card 📝</h3><div class="line"></div>
+    <h3>Certificate of Authenticity 💎</h3><div class="line"></div>
     <div class="report">
-      <div class="rrow"><span>💖 Kindness</span><b class="grade">A+++++</b></div>
-      <div class="rrow"><span>🍰 Sweetness</span><b class="grade">Overflowing</b></div>
-      <div class="rrow"><span>✨ Charm</span><b class="grade">Dangerously high</b></div>
-      <div class="rrow"><span>😄 Smile</span><b class="grade">Fixes bad days</b></div>
-      <div class="rrow"><span>👑 Being the best</span><b class="grade">Unbeatable</b></div>
+      <div class="rrow"><span>💖 Kindness</span><b class="grade">Pure 24-karat</b></div>
+      <div class="rrow"><span>🍰 Sweetness</span><b class="grade">Vintage reserve</b></div>
+      <div class="rrow"><span>✨ Charm</span><b class="grade">Rare edition</b></div>
+      <div class="rrow"><span>😄 Smile</span><b class="grade">Limited edition</b></div>
+      <div class="rrow"><span>👑 Being the best</span><b class="grade">One of a kind</b></div>
     </div>
-    <p class="fine">Teacher's remark: "Perfect in every subject. We tried to find a flaw, but the pencil broke." 😅</p>
+    <p class="fine">Appraised by everyone who loves her: genuine, priceless and impossible to replicate. Handle with admiration. 🥂</p>
   </div>
 
   <div class="sec">
@@ -296,8 +296,6 @@
 
 <div class="mini">✨ Coming soon: Parikshita &mdash; The Portfolio ✨</div>
 <footer>
-  <div class="march"><div class="track"><span>🎈 Happy Birthday 🎂 Happy Birthday 🎀 Happy Birthday 💖 Happy Birthday 🥳 Happy Birthday 🌸 Happy Birthday ✨ 🎈 Happy Birthday 🎂 Happy Birthday 🎀 Happy Birthday 💖 Happy Birthday 🥳 Happy Birthday 🌸 Happy Birthday ✨ </span><span>🎈 Happy Birthday 🎂 Happy Birthday 🎀 Happy Birthday 💖 Happy Birthday 🥳 Happy Birthday 🌸 Happy Birthday ✨ 🎈 Happy Birthday 🎂 Happy Birthday 🎀 Happy Birthday 💖 Happy Birthday 🥳 Happy Birthday 🌸 Happy Birthday ✨ </span></div></div>
-  <div class="fl">Happy Birthday, Happy Birthday, Happy Birthday!</div>
   <div class="emo">🎈🎂🎀💖🌸🥳🧁✨🎈</div>
   <div class="fs">Made with love for Parikshita ♥</div>
 </footer>
@@ -309,11 +307,11 @@
   let ps=[];
   function size(){
     c.width=innerWidth;c.height=innerHeight;
-    ps=Array.from({length:42},()=>mk(true));
+    ps=Array.from({length:8},()=>mk(true));
   }
   function mk(init){
     return {x:Math.random()*c.width,y:init?Math.random()*c.height:c.height+20,
-      s:11+Math.random()*12,v:.15+Math.random()*.35,p:Math.random()*6.28,
+      s:10+Math.random()*7,v:.15+Math.random()*.35,p:Math.random()*6.28,
       e:['\u2665','\u2726','\uD83C\uDF38','\uD83C\uDF80','\uD83D\uDC96','\u2728','\uD83C\uDF88'][Math.floor(Math.random()*7)],col:'#e9a0b8'};
   }
   size();addEventListener('resize',size);
@@ -322,7 +320,7 @@
     ps.forEach((t,i)=>{
       t.y-=t.v;t.p+=.02;t.x+=Math.sin(t.p)*.3;
       if(t.y<-20)ps[i]=mk(false);
-      x.globalAlpha=.35+.35*Math.abs(Math.sin(t.p));x.fillStyle=t.col;
+      x.globalAlpha=.2+.2*Math.abs(Math.sin(t.p));x.fillStyle=t.col;
       x.font=t.s+'px serif';
       x.fillText(t.e,t.x,t.y);
     });
@@ -404,8 +402,8 @@ function balloons(n){
     const b=document.createElement('div');b.className='balloon';
     const col=bcols[i%bcols.length];
     b.style.background=`radial-gradient(circle at 35% 30%, #ffffffaa 0%, ${col} 45%, ${col} 100%)`;
-    b.style.left=(Math.random()*92)+'vw';
-    const sc=.8+Math.random()*.7;b.style.width=56*sc+'px';b.style.height=70*sc+'px';
+    b.style.left=(i%2?2+Math.random()*5:90+Math.random()*5)+'vw';
+    const sc=.55+Math.random()*.25;b.style.width=56*sc+'px';b.style.height=70*sc+'px';
     b.style.animationDuration=(8+Math.random()*6)+'s';
     b.style.animationDelay=(Math.random()*2.5)+'s';
     box.appendChild(b);
@@ -448,7 +446,7 @@ document.getElementById('gift').addEventListener('click',()=>{
   burst(130,r.left+r.width/2,r.top+r.height/3);
   setTimeout(()=>burst(80,innerWidth*.2,innerHeight*.4),400);
   setTimeout(()=>burst(80,innerWidth*.8,innerHeight*.4),700);
-  balloons(16);setTimeout(()=>balloons(8),6000);
+  balloons(3);
   setTimeout(()=>{
     document.getElementById('card').classList.add('show');
     document.getElementById('card').scrollIntoView({behavior:'smooth',block:'start'});
