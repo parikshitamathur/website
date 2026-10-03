@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Happy Birthday Parikshita</title>
+<title>🎂 Happy Birthday Parikshita</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -40,9 +40,9 @@
   h1{
     font-family:'Great Vibes',cursive;font-weight:400;
     font-size:clamp(3.4rem,13vw,6.4rem);line-height:1.08;margin:10px 0 6px;
-    background:linear-gradient(90deg,#9a4466,#cc7f91,#b98a4b,#cc7f91,#9a4466);
+    background:linear-gradient(90deg,#5c1538,#a02f5c,#8a5a1a,#a02f5c,#5c1538);
     background-size:200% auto;animation:shine 7s linear infinite;
-    text-shadow:0 0 1px rgba(255,255,255,.2);
+    -webkit-text-stroke:.8px rgba(100,20,60,.55);filter:drop-shadow(0 3px 8px rgba(122,30,70,.3));
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .sub{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:var(--wine-soft)}
@@ -50,18 +50,25 @@
   .orn{animation:twinkle 2.6s ease-in-out infinite}
   @keyframes twinkle{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
 
-  .countdown{display:flex;justify-content:center;gap:8px;margin:14px 0 8px;flex-wrap:wrap}
-  .tbox{margin:26px 0;padding:22px 12px 18px;border-radius:26px;background:rgba(255,255,255,.55);border:1px solid rgba(185,138,75,.45);box-shadow:0 14px 34px rgba(180,88,122,.15)}
-  .tl{font-family:'Playfair Display',serif;letter-spacing:.06em;color:var(--wine);font-size:1.02rem}
+  .countdown{display:flex;justify-content:center;gap:8px;margin:18px 0 12px;flex-wrap:wrap}
+  .tbox{margin:34px 0;padding:26px 12px 20px;border-radius:30px;position:relative;
+    background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,232,242,.78));
+    border:2px dashed rgba(185,138,75,.7);box-shadow:0 16px 36px rgba(180,60,100,.2)}
+  .tbox::before{content:"\1F380";position:absolute;top:-17px;left:18px;font-size:1.7rem}
+  .tbox::after{content:"\1F388";position:absolute;top:-17px;right:18px;font-size:1.7rem}
+  .tl{font-family:'Great Vibes',cursive;color:var(--wine);font-size:1.9rem;line-height:1.2}
   .tnote{font-size:.9rem;color:var(--wine-soft);margin-top:4px}
   .story{font-family:'Playfair Display',serif;font-style:italic;max-width:480px;margin:12px auto 0;line-height:1.75;color:var(--wine-soft);min-height:4.5em;font-size:1rem}
-  .cd{
-    width:66px;padding:12px 0 8px;border-radius:16px;
-    background:rgba(255,255,255,.7);border:1px solid rgba(185,138,75,.5);
-    box-shadow:0 8px 24px rgba(201,120,143,.18);
-  }
-  .cd b{display:block;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--wine)}
-  .cd span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .cd{position:relative;width:68px;padding:13px 0 9px;border-radius:50% 50% 46% 46% / 58% 58% 42% 42%;
+    border:3px solid #fff;box-shadow:0 8px 18px rgba(180,60,100,.25);animation:floaty 3s ease-in-out infinite}
+  .cd::after{content:"";position:absolute;left:50%;bottom:-7px;width:9px;height:9px;background:inherit;transform:translateX(-50%) rotate(45deg);border-radius:2px}
+  .cd:nth-child(1){background:linear-gradient(160deg,#ffd3e2,#ff9fc0)}
+  .cd:nth-child(2){background:linear-gradient(160deg,#ffe3c9,#ffb98f);animation-delay:.4s}
+  .cd:nth-child(3){background:linear-gradient(160deg,#e4d4ff,#c4a3ff);animation-delay:.8s}
+  .cd:nth-child(4){background:linear-gradient(160deg,#d3f5e3,#8fdcb2);animation-delay:1.2s}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .cd b{display:block;font-family:'Playfair Display',serif;font-size:1.65rem;color:#5a1f3d}
+  .cd span{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#7a3a58;font-weight:500}
   #cdText{font-size:.95rem;color:var(--wine-soft);margin-bottom:6px}
 
   .giftWrap{margin:44px 0 10px}
@@ -145,7 +152,28 @@
   .teaser p{font-weight:300;line-height:1.75;opacity:.88;max-width:520px;margin:0 auto}
   .pills{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
   .pills span{padding:8px 18px;border-radius:999px;font-size:.8rem;border:1px solid rgba(233,207,159,.6);color:var(--champagne)}
-  footer{position:relative;z-index:5;text-align:center;font-size:.75rem;color:var(--champagne);background:#2b0d20;padding:0 0 26px;opacity:.9}
+  footer{position:relative;z-index:5;text-align:center;background:linear-gradient(160deg,#5c1538,#2b0d20);color:var(--champagne);padding:16px 0 26px;border-top:2px solid var(--champagne);overflow:hidden}
+
+  .report{max-width:520px;margin:0 auto;background:rgba(255,255,255,.9);border:2px dashed rgba(185,138,75,.65);border-radius:22px;padding:8px 18px;box-shadow:0 14px 32px rgba(180,60,100,.16)}
+  .rrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px dotted rgba(122,58,88,.3);font-size:.95rem;text-align:left}
+  .rrow:last-child{border-bottom:none}
+  .grade{font-family:'Playfair Display',serif;color:#fff;background:linear-gradient(135deg,var(--rose),#c9892f);padding:4px 12px;border-radius:999px;font-size:.76rem;white-space:nowrap}
+  .fine{margin:16px auto 0;max-width:480px;font-style:italic;font-family:'Playfair Display',serif;color:var(--wine-soft);font-size:.95rem;line-height:1.6}
+  .warn{max-width:480px;margin:0 auto;padding:22px 20px;background:#fff6c9;color:#5a1f3d;border:3px solid #5a1f3d;border-radius:14px;transform:rotate(-1.5deg);box-shadow:6px 6px 0 rgba(90,31,61,.2)}
+  .warn b{display:block;font-size:1.02rem;letter-spacing:.06em;margin-bottom:8px}
+  .warn p{font-size:.88rem;line-height:1.6;margin-top:4px}
+  .cbtn{border:none;cursor:pointer;font-family:inherit;font-size:1rem;color:#fff;padding:14px 28px;border-radius:999px;background:linear-gradient(135deg,#b4587a,#d9893f);box-shadow:0 10px 24px rgba(180,60,100,.35);transition:transform .2s}
+  .cbtn:active{transform:scale(.95)}
+  .cout{max-width:480px;margin:20px auto 0;padding:18px 20px;border-radius:20px;background:rgba(255,255,255,.9);border:1px solid rgba(185,138,75,.5);font-family:'Playfair Display',serif;font-style:italic;line-height:1.7;min-height:64px}
+  .cout.pulse{animation:pop .6s ease both}
+  .mini{position:relative;z-index:5;text-align:center;font-size:.72rem;color:var(--wine-soft);opacity:.75;padding:40px 20px 18px}
+  .march{overflow:hidden;white-space:nowrap;padding:6px 0}
+  .track{display:inline-flex;width:max-content;animation:marq 30s linear infinite}
+  .track span{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:#ffe9c2}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  .fl{font-family:'Great Vibes',cursive;font-size:clamp(1.8rem,7vw,2.6rem);line-height:1.3;margin:10px 16px 4px;color:#ffe9c2}
+  .emo{font-size:1.5rem;letter-spacing:.25em;margin:4px 0 8px}
+  .fs{font-size:.75rem;opacity:.8}
 </style>
 </head>
 <body>
@@ -156,12 +184,12 @@
 
 <main>
   <div class="tag">Wrapped in love, just for you</div>
-  <div class="orn">&#10022; &#127872; &#10022;</div>
+  <div class="orn">🎈 ✨ 🎂 ✨ 🎈</div>
   <h1>Happy Birthday,<br>Parikshita</h1>
   <p class="sub">6th October &middot; a day made just for you &#128150;</p>
 
   <div class="tbox">
-    <div class="tl">&#127881; Your birthday begins at 12:00 AM</div>
+    <div class="tl">🎀 Your birthday begins at 12:00 AM 🎈</div>
     <div class="countdown" id="cd1">
       <div class="cd"><b id="ad">0</b><span>Days</span></div>
       <div class="cd"><b id="ah">0</b><span>Hours</span></div>
@@ -172,7 +200,7 @@
   </div>
 
   <div class="tbox">
-    <div class="tl">&#128118; A little angel arrives at 3:33 AM</div>
+    <div class="tl">🍼 Our little angel arrives at 3:33 AM 👼</div>
     <div class="countdown" id="cd2">
       <div class="cd"><b id="bd">0</b><span>Days</span></div>
       <div class="cd"><b id="bh">0</b><span>Hours</span></div>
@@ -200,13 +228,13 @@
           <circle cx="80" cy="52" r="8" fill="#c9a15c"/>
         </g>
       </svg>
-      <p>Tap to open your gift</p>
+      <p>Tap to open your gift 🎁</p>
     </button>
   </div>
 
   <section id="card">
-    <h2>My dearest Parikshita,</h2>
-    <div class="age">SWEET, RADIANT &amp; ONE OF A KIND</div>
+    <h2>My dearest Parikshita 💌</h2>
+    <div class="age">🌸 SWEET, RADIANT &amp; ONE OF A KIND 🌸</div>
     <div class="poem">
       <p>A little sparkle, a heart so true,<br>The world grew softer when it met you.<br>Your kindness enters before you speak<br>And leaves a warmth in the hearts you seek.</p>
       <p>You carry no mask and you keep no score,<br>You simply give, then give some more.<br>A gentle soul with a courage rare,<br>Who makes the heaviest day feel fair.</p>
@@ -214,47 +242,65 @@
       <p>May this new year bring you all you're due,<br>Every joy that's been waiting for you.<br>Best of hearts and best of souls,<br>You make the world feel whole.</p>
       <p>Happy Birthday, Parikshita.<br>The best girl in the world has her day,<br>and the world is lucky that you came its way.</p>
     </div>
-    <div class="sign">With all good wishes</div>
+    <div class="sign">With lots of love 💕</div>
     <div class="wishline">&#127881; May every day of this year feel like today. &#127881;</div>
   </section>
 </main>
 
 <div id="more">
   <div class="sec">
-    <h3>What makes you, you</h3><div class="line"></div>
-    <div class="traits">
-      <div class="trait"><i>&#128150;</i><h4>A Heart of Gold</h4><p>Your kindness is never loud, but it is always felt.</p></div>
-      <div class="trait"><i>&#10024;</i><h4>A Charming Soul</h4><p>You make every room warmer just by walking into it.</p></div>
-      <div class="trait"><i>&#127800;</i><h4>Sweet, Always</h4><p>The gentlest words and the warmest smile, every single day.</p></div>
-      <div class="trait"><i>&#128081;</i><h4>Quiet Elegance</h4><p>Grace that cannot be taught and class that cannot be faked.</p></div>
+    <h3>Parikshita's Official Report Card 📝</h3><div class="line"></div>
+    <div class="report">
+      <div class="rrow"><span>💖 Kindness</span><b class="grade">A+++++</b></div>
+      <div class="rrow"><span>🍰 Sweetness</span><b class="grade">Overflowing</b></div>
+      <div class="rrow"><span>✨ Charm</span><b class="grade">Dangerously high</b></div>
+      <div class="rrow"><span>😄 Smile</span><b class="grade">Fixes bad days</b></div>
+      <div class="rrow"><span>👑 Being the best</span><b class="grade">Unbeatable</b></div>
+    </div>
+    <p class="fine">Teacher's remark: "Perfect in every subject. We tried to find a flaw, but the pencil broke." 😅</p>
+  </div>
+
+  <div class="sec">
+    <h3>Warning Label ⚠️</h3><div class="line"></div>
+    <div class="warn">
+      <b>HANDLE WITH LOTS OF LOVE 💝</b>
+      <p>Contains extreme sweetness, a heart of gold and an unfair amount of charm. May cause sudden smiling, happy tears, blushing and uncontrollable hugging.</p>
+      <p><small>Not for sale. Not returnable. Priceless. 🎀</small></p>
     </div>
   </div>
 
   <div class="sec">
-    <h3>Wishes for your year ahead</h3><div class="line"></div>
+    <h3>Birthday Rules (strictly enforced) 👑</h3><div class="line"></div>
     <ul class="wishes">
-      <li data-n="1">May the kindness you give come back to you, multiplied.</li>
-      <li data-n="2">May every dream you have quietly held find its way to you.</li>
-      <li data-n="3">May your days be soft and your laughter loud.</li>
-      <li data-n="4">May the people you love hold you as dearly as you hold them.</li>
-      <li data-n="5">May you always see yourself the way those who love you do.</li>
-      <li data-n="6">May this be your most beautiful chapter yet.</li>
+      <li data-n="1">No work today. Absolutely none. 🚫💼</li>
+      <li data-n="2">Cake is officially a food group. 🍰</li>
+      <li data-n="3">You must accept every compliment. "Stop it" is not allowed. 😁</li>
+      <li data-n="4">Everyone must address you as Birthday Queen. 👸</li>
+      <li data-n="5">Smile at least 100 times. We are counting. 😉</li>
+      <li data-n="6">If anyone says no to you today, they are wrong. 💪</li>
     </ul>
   </div>
 
   <div class="sec">
+    <h3>Need a compliment? 💌</h3><div class="line"></div>
+    <button class="cbtn" id="cbtn">Tap for a compliment 💖</button>
+    <div class="cout" id="cout">🎀 Go on, tap. You deserve it.</div>
+  </div>
+
+  <div class="sec">
     <div class="big">Sweet as ever, and shining brighter every day.</div>
-    <div class="hearts">&#9825; &#9829; &#9825;</div>
+    <div class="hearts">♡ ♥ ♡</div>
+    <p class="fine">Now go eat some cake. 🎂🥳</p>
   </div>
 </div>
 
-<section class="teaser">
-  <span class="tag">Coming soon</span>
-  <h3>Parikshita &mdash; The Portfolio</h3>
-  <p>Once the birthday celebrations are over, this address will become something new: a home for who you are, what you do, and what makes you, you.</p>
-  <div class="pills"><span>About Me</span><span>My Work</span><span>My Story</span><span>Say Hello</span></div>
-</section>
-<footer>Made with love for Parikshita &#9829;</footer>
+<div class="mini">✨ Coming soon: Parikshita &mdash; The Portfolio ✨</div>
+<footer>
+  <div class="march"><div class="track"><span>🎈 Happy Birthday 🎂 Happy Birthday 🎀 Happy Birthday 💖 Happy Birthday 🥳 Happy Birthday 🌸 Happy Birthday ✨ 🎈 Happy Birthday 🎂 Happy Birthday 🎀 Happy Birthday 💖 Happy Birthday 🥳 Happy Birthday 🌸 Happy Birthday ✨ </span><span>🎈 Happy Birthday 🎂 Happy Birthday 🎀 Happy Birthday 💖 Happy Birthday 🥳 Happy Birthday 🌸 Happy Birthday ✨ 🎈 Happy Birthday 🎂 Happy Birthday 🎀 Happy Birthday 💖 Happy Birthday 🥳 Happy Birthday 🌸 Happy Birthday ✨ </span></div></div>
+  <div class="fl">Happy Birthday, Happy Birthday, Happy Birthday!</div>
+  <div class="emo">🎈🎂🎀💖🌸🥳🧁✨🎈</div>
+  <div class="fs">Made with love for Parikshita ♥</div>
+</footer>
 
 <script>
 /* ---------- floating sparkles & hearts ---------- */
@@ -267,8 +313,8 @@
   }
   function mk(init){
     return {x:Math.random()*c.width,y:init?Math.random()*c.height:c.height+20,
-      s:6+Math.random()*10,v:.15+Math.random()*.35,p:Math.random()*6.28,
-      h:Math.random()<.45,col:['#e9bfcb','#e3c88f','#f3d6df','#d9a6b7'][Math.floor(Math.random()*4)]};
+      s:11+Math.random()*12,v:.15+Math.random()*.35,p:Math.random()*6.28,
+      e:['\u2665','\u2726','\uD83C\uDF38','\uD83C\uDF80','\uD83D\uDC96','\u2728','\uD83C\uDF88'][Math.floor(Math.random()*7)],col:'#e9a0b8'};
   }
   size();addEventListener('resize',size);
   (function draw(){
@@ -278,7 +324,7 @@
       if(t.y<-20)ps[i]=mk(false);
       x.globalAlpha=.35+.35*Math.abs(Math.sin(t.p));x.fillStyle=t.col;
       x.font=t.s+'px serif';
-      x.fillText(t.h?'\u2665':'\u2726',t.x,t.y);
+      x.fillText(t.e,t.x,t.y);
     });
     requestAnimationFrame(draw);
   })();
@@ -409,6 +455,27 @@ document.getElementById('gift').addEventListener('click',()=>{
   },900);
   setTimeout(()=>document.getElementById('more').classList.add('show'),7500);
   try{ac=new (window.AudioContext||window.webkitAudioContext)();mBtn.style.display='block';setMusic(true);}catch(e){}
+});
+
+/* ---------- compliment button ---------- */
+const comps=[
+ "You are the kind of person people feel lucky to know. 🍀",
+ "Warning: your smile has been reported for brightening entire rooms. ☀️",
+ "Scientists confirm: 100% adorable, 0% margin of error. 🔬",
+ "You are proof that the sweetest people are also the strongest. 💪💖",
+ "If kindness had a face, it would borrow yours. 😄",
+ "Even the cake is jealous of how sweet you are. 🍰",
+ "You make ordinary days feel like festivals. 🎉",
+ "The world has been getting better since you arrived. Just saying. 🌍✨",
+ "Main character energy, with a much kinder heart. 🌟",
+ "Your heart is so big it needs its own postcode. 💌"
+];
+let ci=-1;
+document.getElementById('cbtn').addEventListener('click',()=>{
+  let i;do{i=Math.floor(Math.random()*comps.length)}while(i===ci);ci=i;
+  const o=document.getElementById('cout');o.textContent=comps[i];
+  o.classList.remove('pulse');void o.offsetWidth;o.classList.add('pulse');
+  burst(40,innerWidth/2,innerHeight*.6);
 });
 </script>
 </body>
