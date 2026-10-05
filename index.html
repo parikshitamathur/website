@@ -26,7 +26,6 @@
   button{font-family:inherit}
   button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 
-  /* fine film grain over everything: the "texture" */
   body::after{
     content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.16;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
@@ -43,13 +42,11 @@
     100%{transform:translateY(-135vh) translateX(-8px) rotate(-2deg)}
   }
 
-  /* ---------- the night ---------- */
   .night{
     position:relative;z-index:2;text-align:center;padding:64px 22px 84px;
-    background:
-      radial-gradient(120% 55% at 50% 0%,rgba(92,42,110,.55),transparent 62%);
+    background:radial-gradient(120% 55% at 50% 0%,rgba(92,42,110,.55),transparent 62%);
   }
-.moon{position:relative;width:clamp(96px,26vw,132px);margin:0 auto 26px}
+  .moon{position:relative;width:clamp(96px,26vw,132px);margin:0 auto 26px}
   .moon::before{content:"";position:absolute;left:50%;top:50%;width:300%;height:300%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(236,218,170,.13) 0%,rgba(236,218,170,.04) 32%,transparent 62%)}
   .moon svg{position:relative;display:block;width:100%;height:auto;opacity:.82;filter:drop-shadow(0 0 12px rgba(236,218,170,.2))}
   .moon .sp{position:absolute;color:var(--gold);line-height:1;animation:tw 3.4s ease-in-out infinite}
@@ -77,8 +74,6 @@
   .date i{display:block;width:clamp(40px,14vw,90px);height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
   .date i:last-child{transform:scaleX(-1)}
 
-
-  /* ---------- Pari, the angel, coming down from the sky ---------- */
   .heaven{
     position:relative;max-width:440px;height:340px;margin:44px auto 0;overflow:hidden;border-radius:30px;
     border:1px solid rgba(232,205,150,.28);
@@ -117,9 +112,7 @@
   .heaven.go .fth{animation:fall 9s linear infinite}
   @keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}12%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),240px) rotate(240deg)}}
   .hcap{margin-top:26px;margin-bottom:6px;font-family:'Pinyon Script',cursive;font-size:clamp(2.1rem,8vw,2.8rem);line-height:1.2;color:#f3dfb4;text-shadow:0 0 20px rgba(232,205,150,.25)}
-  
 
-  /* ---------- little angels gliding down both sides ---------- */
   .sideAngels{position:fixed;inset:0;pointer-events:none;z-index:35;overflow:hidden}
   .sa{position:absolute;top:0;width:clamp(58px,15vw,96px);animation:sadown 12s linear forwards}
   .sa.l{left:1vw}.sa.r{right:1vw}
@@ -159,7 +152,6 @@
   .opened .gift .lid{transform:translate(20px,-48px) rotate(24deg)}
   .opened .gift p{visibility:hidden}
 
-  /* ---------- the dawn ---------- */
   #dawn{position:relative;z-index:2;opacity:0;transition:opacity 1.8s ease}
   #dawn.show{opacity:1}
   .horizon{
@@ -236,7 +228,6 @@
 
   footer{position:relative;z-index:2;text-align:center;padding:34px 20px 30px;background:#1b0e27;color:var(--gold);border-top:1px solid rgba(232,205,150,.55)}
   .fe{font-size:1.4rem;letter-spacing:.3em}
-  .fm{margin-top:10px;font-style:italic;font-size:1.2rem}
   .fs{margin-top:16px;font-size:.9rem;opacity:.55;font-style:italic}
 
   @media (prefers-reduced-motion:reduce){
@@ -393,12 +384,12 @@
         <p class="stanza">May this new year bring you all you're due,<br>Every joy that's been waiting for you.<br>Best of hearts and best of souls,<br>You make the world feel whole.</p>
         <p class="stanza">Happy Birthday, Pari.<br>The best girl in the world has her day,<br>and the world is lucky that you came its way.</p>
       </div>
-      <div class="sign">With all my warmth</div>
+      <div class="sign">With all our warmth</div>
       <p class="wishline">May every day of this year feel like today. 🤍</p>
     </section>
 
     <section class="sec">
-      <h3>Things I hope you never forget</h3><div class="orn"></div>
+      <h3>Things we hope you never forget</h3><div class="orn"></div>
       <div class="prose">
         <p>Your kindness never announces itself. It simply arrives, quietly, the way light enters a room, and suddenly everything is easier to look at.</p>
         <p>You listen in a way that makes people feel like the only story in the room.</p>
@@ -410,7 +401,7 @@
     </section>
 
     <section class="sec">
-      <h3>My wishes for your year ahead</h3><div class="orn"></div>
+      <h3>Our wishes for your year ahead</h3><div class="orn"></div>
       <div class="prose it">
         <p>May the year be as gentle with you as you have always been with everyone else.</p>
         <p>May every dream you have kept folded in your heart find a window, and open.</p>
@@ -436,7 +427,6 @@
 
 <footer>
   <div class="fe">🎈 🎂 🎀 🤍 ✨</div>
-  <p class="fm">Made with love for Pari</p>
   <p class="fs">Coming soon: Pari, The Portfolio</p>
 </footer>
 
@@ -444,7 +434,6 @@
 const $=id=>document.getElementById(id);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- a few quiet stars ---------- */
 (function(){
   const c=$('stars'),x=c.getContext('2d');
   let st=[],shoot=null;
@@ -479,8 +468,7 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   draw();
 })();
 
-/* ---------- two countdowns: midnight and 3:33 AM (India time) ---------- */
-/* Preview: add  ?now=2026-10-05T23:55:00  to the address to see the page at that moment. */
+/* two countdowns: midnight and 3:33 AM (India time). Preview: add ?now=2026-10-05T23:55:00 */
 const fake=new URLSearchParams(location.search).get('now');
 const offset=fake?(new Date(fake)-new Date()):0;
 const nowD=()=>new Date(Date.now()+offset);
@@ -524,7 +512,6 @@ function tick(){
 }
 tick();setInterval(tick,1000);
 
-/* ---------- Pari starts her descent when the scene comes into view ---------- */
 (function(){
   const h=$('heaven');
   if('IntersectionObserver' in window && !reduce){
@@ -533,7 +520,6 @@ tick();setInterval(tick,1000);
   }else{h.classList.add('go');h.style.setProperty('--static','1');}
 })();
 
-/* ---------- petals ---------- */
 const pc=$('petals'),px=pc.getContext('2d');
 function rs(){pc.width=innerWidth;pc.height=innerHeight}rs();addEventListener('resize',rs);
 let bits=[];
@@ -556,7 +542,6 @@ function burst(n,ox,oy){
   requestAnimationFrame(loop);
 })();
 
-/* ---------- a few small balloons, once ---------- */
 const bcols=['#f2b8c4','#e8cd96','#e4cdf0','#f8d9c0'];
 function balloons(n){
   const box=$('balloons');
@@ -572,7 +557,6 @@ function balloons(n){
   }
 }
 
-/* ---------- music box (synthesised Happy Birthday) ---------- */
 let ac=null,musicOn=false,timer=null;
 const N={G4:392,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99};
 const tune=[['G4',.75],['G4',.25],['A4',1],['G4',1],['C5',1],['B4',2],
@@ -600,14 +584,12 @@ function setMusic(on){
 }
 mBtn.addEventListener('click',()=>setMusic(!musicOn));
 
-/* ---------- poem reveals line by line as it is read ---------- */
 const stz=document.querySelectorAll('.stanza');
 if('IntersectionObserver' in window && !reduce){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.4});
   stz.forEach(s=>io.observe(s));
 }else{stz.forEach(s=>s.classList.add('in'));}
 
-/* ---------- open the gift: night gives way to dawn ---------- */
 let opened=false;
 $('gift').addEventListener('click',()=>{
   if(opened)return;opened=true;
@@ -625,8 +607,6 @@ $('gift').addEventListener('click',()=>{
   try{ac=new (window.AudioContext||window.webkitAudioContext)();mBtn.style.display='block';setMusic(true);}catch(e){}
 });
 
-
-/* ---------- two smiling angels glide down the sides ---------- */
 function flyAngels(){
   if(reduce)return;
   const src=document.querySelector('#heaven .ang svg'),box=$('sideAngels');
@@ -646,7 +626,6 @@ function flyAngels(){
   }
 })();
 
-/* ---------- little notes ---------- */
 const notes=[
  "You are the calm people carry with them long after they have left your company.",
  "Some people light up a room. You warm it. There is a difference, and everyone feels it.",
