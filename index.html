@@ -228,8 +228,15 @@
 
   footer{position:relative;z-index:2;text-align:center;padding:34px 20px 30px;background:#1b0e27;color:var(--gold);border-top:1px solid rgba(232,205,150,.55)}
   .fe{font-size:1.4rem;letter-spacing:.3em}
+  .ff{margin-top:12px;font-family:'Pinyon Script',cursive;font-size:clamp(2rem,8vw,2.6rem);line-height:1.2;color:#f3dfb4;text-shadow:0 0 18px rgba(232,205,150,.3)}
   .fs{margin-top:16px;font-size:.9rem;opacity:.55;font-style:italic}
 
+  #wishCap{position:fixed;left:0;right:0;top:38%;z-index:44;text-align:center;pointer-events:none;opacity:0;padding:0 20px}
+  #wishCap .a{font-family:'Pinyon Script',cursive;font-size:clamp(3rem,13vw,5.4rem);line-height:1.15;color:#fff3d6;text-shadow:0 0 28px rgba(232,205,150,.8),0 0 60px rgba(217,154,168,.55)}
+  #wishCap .b{margin-top:6px;font-style:italic;font-size:1.35rem;color:#f6e6c4;text-shadow:0 0 16px rgba(0,0,0,.45)}
+  #wishCap.show{animation:wishin 6s ease both}
+  @keyframes wishin{0%{opacity:0;transform:translateY(16px) scale(.96)}15%{opacity:1;transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-10px)}}
+  .hearBtn{margin-top:26px}
   #fw{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:42}
   .rv{opacity:0;transform:translateY(14px);transition:opacity 1.1s ease,transform 1.1s ease}
   .rv.on{opacity:1;transform:none}
@@ -250,6 +257,7 @@
 <canvas id="stars"></canvas>
 <canvas id="petals"></canvas>
 <canvas id="fw" aria-hidden="true"></canvas>
+<div id="wishCap" aria-hidden="true"><div class="a">Happy Birthday, Pari</div><div class="b">may all your wishes come true ✨</div></div>
 <div class="balloons" id="balloons"></div>
 <div class="sideAngels" id="sideAngels" aria-hidden="true"></div>
 <button id="musicBtn" type="button">♪ Music on</button>
@@ -436,12 +444,14 @@
       <div class="big">Happy Birthday, Pari</div>
       <p>Today the whole world is celebrating you. It is only returning the favour. 🤍</p>
       <p class="small">Now go, eat the cake, and be thoroughly adored. 🎂</p>
+      <button class="noteBtn hearBtn" id="hearBtn" type="button">Hear a birthday wish 🎵</button>
     </section>
   </div>
 </div>
 
 <footer>
   <div class="fe">🎈 🎂 🎀 🤍 ✨</div>
+  <p class="ff">From your family and friends</p>
   <p class="fs">Coming soon: Pari, The Portfolio</p>
 </footer>
 
@@ -647,14 +657,53 @@ function playTune(){
   if(!ac||!musicOn)return;
   const beat=.6;let t=ac.currentTime+.08;
   tune.forEach(([n,d])=>{chime(N[n],t,d*beat*.6);t+=d*beat;});
-  timer=setTimeout(playTune,(t-ac.currentTime+3)*1000);
+  let gap=3;
+  if(!wished){
+    wished=true;gap=11;
+    setTimeout(()=>sayWish(false),(t-ac.currentTime+.2)*1000);
+  }
+  timer=setTimeout(playTune,(t-ac.currentTime+gap)*1000);
+}
+let wished=false,capT=null;
+function sparkleChime(){
+  if(!ac)return;
+  const t0=ac.currentTime+.05;
+  [1046.5,1318.5,1568,2093,1568,2637].forEach((f,i)=>chime(f,t0+i*.13,.35));
+}
+function pickVoice(){
+  const all=speechSynthesis.getVoices();
+  const norm=v=>v.lang.replace('_','-').toLowerCase();
+  const inVoices=all.filter(v=>norm(v)==='en-in'||/india|heera|neerja|veena|rishi|ravi|kajal|swara/i.test(v.name));
+  return inVoices.find(v=>/female|heera|neerja|veena|kajal|swara|google/i.test(v.name))||inVoices[0]||null;
+}
+function sayWish(force){
+  if(!ac||(!musicOn&&!force))return;
+  sparkleChime();
+  const cap=$('wishCap');cap.classList.remove('show');void cap.offsetWidth;cap.classList.add('show');
+  clearTimeout(capT);capT=setTimeout(()=>cap.classList.remove('show'),6200);
+  burst(36,innerWidth/2,innerHeight*.5);
+  launch(innerWidth*.5,innerHeight*.26,'heart');
+  try{
+    if('speechSynthesis' in window){
+      speechSynthesis.cancel();
+      const u=new SpeechSynthesisUtterance('Happy birthday, Pari. Wishing you a wonderful birthday. May all your wishes come true. Enjoy your day.');
+      u.lang='en-IN';u.rate=.9;u.pitch=1.1;u.volume=1;
+      const v=pickVoice();if(v){u.voice=v;u.lang=v.lang;}
+      setTimeout(()=>speechSynthesis.speak(u),700);
+    }
+  }catch(e){}
 }
 const mBtn=$('musicBtn');
 function setMusic(on){
   musicOn=on;mBtn.textContent=on?'♪ Music on':'♪ Music off';
   clearTimeout(timer);if(on)playTune();
 }
-mBtn.addEventListener('click',()=>setMusic(!musicOn));
+mBtn.addEventListener('click',()=>{setMusic(!musicOn);if(!musicOn&&'speechSynthesis' in window)speechSynthesis.cancel();});
+$('hearBtn').addEventListener('click',()=>{
+  if(!ac){try{ac=new (window.AudioContext||window.webkitAudioContext)();}catch(e){return;}}
+  if(ac.state==='suspended')ac.resume();
+  sayWish(true);
+});
 
 const stz=document.querySelectorAll('.stanza');
 if('IntersectionObserver' in window && !reduce){
