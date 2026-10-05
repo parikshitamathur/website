@@ -444,7 +444,6 @@
       <div class="big">Happy Birthday, Pari</div>
       <p>Today the whole world is celebrating you. It is only returning the favour. 🤍</p>
       <p class="small">Now go, eat the cake, and be thoroughly adored. 🎂</p>
-      <button class="noteBtn hearBtn" id="hearBtn" type="button">Hear a birthday wish 🎵</button>
     </section>
   </div>
 </div>
@@ -670,12 +669,6 @@ function sparkleChime(){
   const t0=ac.currentTime+.05;
   [1046.5,1318.5,1568,2093,1568,2637].forEach((f,i)=>chime(f,t0+i*.13,.35));
 }
-function pickVoice(){
-  const all=speechSynthesis.getVoices();
-  const norm=v=>v.lang.replace('_','-').toLowerCase();
-  const inVoices=all.filter(v=>norm(v)==='en-in'||/india|heera|neerja|veena|rishi|ravi|kajal|swara/i.test(v.name));
-  return inVoices.find(v=>/female|heera|neerja|veena|kajal|swara|google/i.test(v.name))||inVoices[0]||null;
-}
 function sayWish(force){
   if(!ac||(!musicOn&&!force))return;
   sparkleChime();
@@ -683,27 +676,13 @@ function sayWish(force){
   clearTimeout(capT);capT=setTimeout(()=>cap.classList.remove('show'),6200);
   burst(36,innerWidth/2,innerHeight*.5);
   launch(innerWidth*.5,innerHeight*.26,'heart');
-  try{
-    if('speechSynthesis' in window){
-      speechSynthesis.cancel();
-      const u=new SpeechSynthesisUtterance('Happy birthday, Pari. Wishing you a wonderful birthday. May all your wishes come true. Enjoy your day.');
-      u.lang='en-IN';u.rate=.9;u.pitch=1.1;u.volume=1;
-      const v=pickVoice();if(v){u.voice=v;u.lang=v.lang;}
-      setTimeout(()=>speechSynthesis.speak(u),700);
-    }
-  }catch(e){}
 }
 const mBtn=$('musicBtn');
 function setMusic(on){
   musicOn=on;mBtn.textContent=on?'♪ Music on':'♪ Music off';
   clearTimeout(timer);if(on)playTune();
 }
-mBtn.addEventListener('click',()=>{setMusic(!musicOn);if(!musicOn&&'speechSynthesis' in window)speechSynthesis.cancel();});
-$('hearBtn').addEventListener('click',()=>{
-  if(!ac){try{ac=new (window.AudioContext||window.webkitAudioContext)();}catch(e){return;}}
-  if(ac.state==='suspended')ac.resume();
-  sayWish(true);
-});
+mBtn.addEventListener('click',()=>setMusic(!musicOn));
 
 const stz=document.querySelectorAll('.stanza');
 if('IntersectionObserver' in window && !reduce){
