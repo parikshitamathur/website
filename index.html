@@ -230,6 +230,16 @@
   .fe{font-size:1.4rem;letter-spacing:.3em}
   .fs{margin-top:16px;font-size:.9rem;opacity:.55;font-style:italic}
 
+  #fw{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:42}
+  .rv{opacity:0;transform:translateY(14px);transition:opacity 1.1s ease,transform 1.1s ease}
+  .rv.on{opacity:1;transform:none}
+  .sun{animation:sunpulse 5s ease-in-out infinite}
+  @keyframes sunpulse{0%,100%{box-shadow:0 0 70px 26px rgba(255,214,160,.6);transform:scale(1)}50%{box-shadow:0 0 96px 40px rgba(255,214,160,.8);transform:scale(1.05)}}
+  .horizon .hs{position:absolute;color:#fff3d6;line-height:1;animation:tw 3.4s ease-in-out infinite}
+  .finale .big{background-size:220% auto;animation:shimmer 9s linear infinite}
+  .seal{animation:sealglow 4s ease-in-out infinite}
+  @keyframes sealglow{0%,100%{box-shadow:0 8px 16px rgba(70,10,35,.45),inset 0 0 0 4px rgba(255,255,255,.08),inset 0 -5px 9px rgba(0,0,0,.28),0 0 0 rgba(232,205,150,0)}50%{box-shadow:0 8px 16px rgba(70,10,35,.45),inset 0 0 0 4px rgba(255,255,255,.08),inset 0 -5px 9px rgba(0,0,0,.28),0 0 26px rgba(232,205,150,.7)}}
+
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition-duration:.01ms!important}
     .ang{opacity:1;transform:translate(0,46px)}
@@ -239,6 +249,7 @@
 <body>
 <canvas id="stars"></canvas>
 <canvas id="petals"></canvas>
+<canvas id="fw" aria-hidden="true"></canvas>
 <div class="balloons" id="balloons"></div>
 <div class="sideAngels" id="sideAngels" aria-hidden="true"></div>
 <button id="musicBtn" type="button">♪ Music on</button>
@@ -369,6 +380,10 @@
   <section class="horizon" id="horizon">
     <p>And then, as it always does, the night gave way.</p>
     <p>Because someone like you does not arrive in darkness. You arrive, and the dark makes room.</p>
+    <span class="hs" style="left:14%;top:14%;font-size:.9rem">✦</span>
+    <span class="hs" style="left:86%;top:20%;font-size:.7rem;animation-delay:1s">✦</span>
+    <span class="hs" style="left:26%;top:38%;font-size:.6rem;animation-delay:1.8s">✦</span>
+    <span class="hs" style="left:76%;top:46%;font-size:.65rem;animation-delay:2.4s">✦</span>
     <div class="sun"></div>
   </section>
 
@@ -542,6 +557,63 @@ function burst(n,ox,oy){
   requestAnimationFrame(loop);
 })();
 
+/* ---------- soft gold and rose fireworks ---------- */
+const fc=$('fw'),fx=fc.getContext('2d');
+function fsz(){fc.width=innerWidth;fc.height=innerHeight}fsz();addEventListener('resize',fsz);
+let fp=[],fr=[],fRun=false;
+const fpal=[['#ffe9b0','#f3c77a'],['#ffd1dc','#ee8fa8'],['#fff5e6','#f4d9d3'],['#e8cd96','#ffffff'],['#f6c1d0','#c9a5e8']];
+function launch(tx,ty,kind){
+  fr.push({x:tx+(Math.random()-.5)*90,y:fc.height+10,tx,ty,kind,pal:kind==='heart'?fpal[1]:fpal[Math.floor(Math.random()*fpal.length)]});
+  fgo();
+}
+function spawn(x,y,vx,vy,c,life,size){fp.push({x,y,vx,vy,c,life,max:life,size,ph:Math.random()*6});}
+function explode(x,y,kind,pal){
+  if(kind==='heart'){
+    for(let i=0;i<64;i++){
+      const t=i/64*Math.PI*2,hx=16*Math.pow(Math.sin(t),3),hy=-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t));
+      spawn(x,y,hx*.2,hy*.2,pal[i%2],95,2.1);
+    }
+  }else if(kind==='ring'){
+    for(let i=0;i<54;i++){const a=i/54*Math.PI*2;spawn(x,y,Math.cos(a)*4.2,Math.sin(a)*4.2,pal[i%2],85,2);}
+    for(let i=0;i<14;i++){const a=Math.random()*6.28,v=Math.random()*1.6;spawn(x,y,Math.cos(a)*v,Math.sin(a)*v,'#fff7e0',60,1.6);}
+  }else{
+    for(let i=0;i<46;i++){const a=i/46*Math.PI*2+Math.random()*.08,v=4.4+Math.random()*.6;spawn(x,y,Math.cos(a)*v,Math.sin(a)*v,pal[0],90,2.1);}
+    for(let i=0;i<30;i++){const a=i/30*Math.PI*2+.1,v=2.4+Math.random()*.5;spawn(x,y,Math.cos(a)*v,Math.sin(a)*v,pal[1],80,1.9);}
+    for(let i=0;i<14;i++){const a=Math.random()*6.28,v=1+Math.random()*3;spawn(x,y,Math.cos(a)*v,Math.sin(a)*v,'#ffffff',110,1.3);}
+  }
+}
+function fgo(){if(fRun)return;fRun=true;requestAnimationFrame(floop);}
+function floop(){
+  fx.globalCompositeOperation='destination-out';fx.fillStyle='rgba(0,0,0,.2)';fx.fillRect(0,0,fc.width,fc.height);
+  fx.globalCompositeOperation='lighter';
+  fr=fr.filter(r=>{
+    r.x+=(r.tx-r.x)*.04;r.y-=11;
+    fx.globalAlpha=.9;fx.fillStyle='#ffe9b0';fx.beginPath();fx.arc(r.x,r.y,2,0,6.28);fx.fill();
+    if(r.y<=r.ty){explode(r.x,r.y,r.kind,r.pal);return false;}
+    return true;
+  });
+  fp=fp.filter(p=>{
+    p.vx*=.972;p.vy=p.vy*.972+.04;p.x+=p.vx;p.y+=p.vy;p.life--;
+    const k=Math.max(0,p.life/p.max);
+    fx.globalAlpha=k*(.65+.35*Math.sin(p.life*.5+p.ph));fx.fillStyle=p.c;
+    fx.beginPath();fx.arc(p.x,p.y,p.size*(.5+k*.5),0,6.28);fx.fill();
+    return p.life>0;
+  });
+  if(!fr.length&&!fp.length){fx.globalCompositeOperation='source-over';fx.clearRect(0,0,fc.width,fc.height);fRun=false;return;}
+  requestAnimationFrame(floop);
+}
+function fireworkShow(plan){
+  if(reduce)return;
+  plan.forEach(([d,xr,yr,k])=>setTimeout(()=>launch(innerWidth*xr,innerHeight*yr,k),d));
+}
+
+/* ---------- gentle fade-up reveals in the dawn ---------- */
+(function(){
+  if(reduce||!('IntersectionObserver' in window))return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.2,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.letter h2,.lede,.sign,.wishline,.sec h3,.orn,.prose p,.finale .big,.finale p').forEach(el=>{el.classList.add('rv');io.observe(el);});
+})();
+
 const bcols=['#f2b8c4','#e8cd96','#e4cdf0','#f8d9c0'];
 function balloons(n){
   const box=$('balloons');
@@ -599,6 +671,7 @@ $('gift').addEventListener('click',()=>{
   setTimeout(()=>burst(50,innerWidth*.2,innerHeight*.4),400);
   setTimeout(()=>burst(50,innerWidth*.8,innerHeight*.4),700);
   balloons(4);
+  fireworkShow([[500,.5,.3,'heart'],[1500,.2,.36,'peony'],[1900,.8,.3,'peony'],[3000,.35,.22,'ring'],[3400,.66,.26,'peony'],[4600,.5,.28,'heart'],[5200,.14,.4,'ring'],[5400,.86,.4,'peony']]);
   setTimeout(flyAngels,1400);
   const dawn=$('dawn');
   dawn.hidden=false;
@@ -621,7 +694,7 @@ function flyAngels(){
 (function(){
   const f=document.querySelector('.finale');
   if('IntersectionObserver' in window){
-    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){flyAngels();io.disconnect();}}),{threshold:.6});
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){flyAngels();fireworkShow([[0,.3,.3,'peony'],[800,.7,.28,'heart'],[1700,.5,.2,'ring']]);io.disconnect();}}),{threshold:.6});
     io.observe(f);
   }
 })();
